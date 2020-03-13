@@ -4,7 +4,9 @@ import store from './store/index';
 import {connect} from 'react-redux';
 import {scroll_change} from './actions/index';
 import {WebFonts} from './components/fonts';
-import {config} from './constants/config'
+import {siteContent} from './constants/content';
+import {config} from './constants/config';
+import ParallaxSlide from './components/ParallaxSlide';
 
 function FontFamily(){
   if(config.fontFamily){
@@ -30,19 +32,61 @@ class App extends React.Component {
     window.removeEventListener('scroll',this.props.scroll_change);
     window.removeEventListener('resize',this.props.scroll_change);
   }
+
+  renderParallaxSlide(i){
+    const arr = Object.assign({},siteContent);
+    const tempObj = arr[i];
+    return(
+      <ParallaxSlide
+        slideName={tempObj.slideName}
+        paraStrength={tempObj.paraStrength}
+        paraBgSrc={tempObj.paraBgSrc}
+        paraBgAlt={tempObj.paraBgAlt}
+        paraConSubTop={tempObj.paraConSubTop}
+        paraConLogo={tempObj.paraConLogo}
+        paraConHead={tempObj.paraConHead}
+        paraConSubBottom={tempObj.paraConSubBottom}
+        paraConCopy={tempObj.paraConCopy}
+      />
+    )
+    
+  }
   render(){
     return(
       <div>
         <WebFonts />
         <div style={{fontFamily: FontFamily()}}>
+          <div id="slide">
+            <div 
+              id="slide-01"
+              className="content"
+            >
+              <img 
+                src='/images/logo-rur-white.png' 
+                className="logo"
+              />
+            </div>
+            <div
+              className="content hidden"
+            >
+              <h1>
+                Rossum's Universal Robots
+              </h1>
+            </div>
+          </div>
           <div 
             id="scrollCounter"
           >
             <h1>
-              {this.props.scrollNumber}
+              ScrollTop: {this.props.scrollTop}<br/>
+              ScrollBottom: {this.props.scrollBottom}
             </h1>
           </div>
         </div>
+        {this.renderParallaxSlide(0)}
+        {this.renderParallaxSlide(1)}
+
+
       </div>
     )
   }
@@ -50,7 +94,8 @@ class App extends React.Component {
 
 function mapStateToProps(state){
   return {
-    scrollNumber:state.scrollNumber
+    scrollTop:state.scrollTop,
+    scrollBottom:state.scrollBottom
   }
 }
 

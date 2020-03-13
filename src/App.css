@@ -3,9 +3,85 @@ body, html {
   background-image: linear-gradient(to bottom, orange, blue);
 }
 
-div#scrollCounter {
+#scrollCounter {
     position: fixed;
     z-index: 100;
     top: 3vw;
     left: 6vw;
+    color: white;
+}
+
+#slide {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    background-color: black;
+}
+
+.content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+#slide-01 .logo {
+  height: auto;
+  width: 10vw;
+}
+
+.hidden {
+  display: none;
+}
+
+.paraSlideContent {
+  width: 50vw;
+  text-align: center;
+  position: relative;
+  left: 50vw;
+  transform: translate(-50%,-50%);
+  color: white;
+  top: 50vh;
+  background-color: rgba(0,0,0,0.5);
+  padding: 2em;
+}
+
+.paraSlideSubheadTop {
+  font-size: 3rem;
+  font-family: p22-underground,sans-serif;
+  font-weight: 400;
+  margin:0;
+  text-transform: uppercase;
+}
+
+
+.paraSlideLogo {
+  font-size: 12rem;
+  font-family: p22-underground,sans-serif;
+  font-weight: 100;
+  margin:0;
+}
+
+.paraSlideHead {
+  font-size: 6rem;
+  font-family: p22-underground,sans-serif;
+  font-weight: 100;
+  margin:0;
+}
+
+.paraSlideSubheadBottom {
+  font-size: 3rem;
+  font-family: p22-underground,sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  margin:0;
+}
+
+.paraSlideCopy {
+  font-size: 1.5rem;
+  line-height: 1;
+  font-family: p22-underground,sans-serif;
+  font-weight: 300;
 }

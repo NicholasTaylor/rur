@@ -5,6 +5,7 @@ function ParallaxSlide(props) {
 	return(
 		<div
 			id={props.slideName}
+			className="slide"
         >
           <Parallax
             strength={props.paraStrength}

@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import store from './store/index';
 import {connect} from 'react-redux';
-import {scroll_change} from './actions/index';
+import {scroll_change,intro_start,intro_end} from './actions/index';
 import {WebFonts} from './components/fonts';
 import {siteContent} from './constants/content';
 import {config} from './constants/config';
@@ -23,14 +23,10 @@ function FontFamily(){
 
 class App extends React.Component {
   componentDidMount(){
-    this.props.scroll_change();
-    window.addEventListener('scroll',this.props.scroll_change);
-    window.addEventListener('resize',this.props.scroll_change);
+    this.props.intro_start();
   }
 
   componentWillUnmount(){
-    window.removeEventListener('scroll',this.props.scroll_change);
-    window.removeEventListener('resize',this.props.scroll_change);
   }
 
   renderParallaxSlide(i){
@@ -55,6 +51,20 @@ class App extends React.Component {
     return(
       <div>
         <WebFonts />
+        <div id="intro">
+          <div id="intro-content">
+            Hello.
+          </div>
+          <div id="skip-link">
+            <a 
+              onClick={(e) => this.props.intro_end(e)}
+              href="#" 
+              className="skipLink"
+            >
+              Skip Intro
+            </a>
+          </div>
+        </div>
         <div style={{fontFamily: FontFamily()}}>
           <div id="slide">
             <div 
@@ -79,12 +89,13 @@ class App extends React.Component {
           >
             <h1>
               ScrollTop: {this.props.scrollTop}<br/>
-              ScrollBottom: {this.props.scrollBottom}
+              ScrollBottom: {this.props.scrollBottom}<br/>
             </h1>
           </div>
         </div>
         {this.renderParallaxSlide(0)}
         {this.renderParallaxSlide(1)}
+        {this.renderParallaxSlide(2)}
 
 
       </div>
@@ -95,8 +106,9 @@ class App extends React.Component {
 function mapStateToProps(state){
   return {
     scrollTop:state.scrollTop,
-    scrollBottom:state.scrollBottom
+    scrollBottom:state.scrollBottom,
+    slidePos:state.slidePos
   }
 }
 
-export default connect(mapStateToProps,{scroll_change})(App);
+export default connect(mapStateToProps,{scroll_change,intro_start,intro_end})(App);

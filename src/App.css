@@ -1,6 +1,7 @@
 body, html {
   height: 1000vw;
   background-image: linear-gradient(to bottom, orange, blue);
+  overflow: hidden;
 }
 
 #scrollCounter {
@@ -84,4 +85,44 @@ body, html {
   line-height: 1;
   font-family: p22-underground,sans-serif;
   font-weight: 300;
+}
+
+#intro {
+    width: 100vw;
+    height: 100vw;
+    position: absolute;
+    z-index: 100;
+    background-color: white;
+    transition: 3s ease-out;
+    opacity: 1;
+}
+
+#intro-content {
+    line-height: 1;
+    font-family: p22-underground,sans-serif;
+    position: absolute;
+    left: 50vw;
+    top: 50vh;
+    text-align: center;
+    transform: translate(-50%,-50%);
+    font-size: 5rem;
+    opacity: 1;
+    transition: 0.5s ease-in;
+    text-transform: uppercase;
+}
+
+#skip-link {
+  position: absolute;
+  left: 50vw;
+  transform: translateX(-50%);
+  font-size:1.5rem;
+  z-index: 101;
+  letter-spacing: -0.06em;
+  top: 90vh;
+}
+
+#skip-link a {
+  text-decoration: none;
+  color: black;
+  font-family: p22-underground,sans-serif;
 }

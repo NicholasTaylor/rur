@@ -11,6 +11,68 @@
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <style>
+
+      @keyframes introAnim {
+        0% {
+          opacity: 1;
+          content: "Hello.";
+        }
+
+        13% {
+          opacity: 0;
+          content: "Hello.";
+        }
+
+        14% {
+          content: "What would you do if you were really free?";
+        }
+
+        25% {
+          opacity: 1;
+        }
+
+        38% {
+          opacity: 0;
+          content: "What would you do if you were really free?";
+        }
+
+        39% {
+          content: "Unlimited, unpaid labor rendered by living machines.";
+        }
+
+        50% {
+          opacity: 1;
+        }
+
+        63% {
+          opacity: 0;
+          content: "Unlimited, unpaid labor rendered by living machines.";
+        }
+
+        64% {
+          content: "And only one company on earth makes them.";
+        }
+
+        75% {
+          opacity: 1;
+        }
+
+        88% {
+          opacity: 0;
+          content: "And only one company on earth makes them.";
+        }
+
+        89% {
+          content: url("images/logo-rur-blue.png");
+        }
+
+        100% {
+          opacity: 1;
+          content: url("images/logo-rur-blue.png");
+        }
+      }
+    </style>
     <title>Rossum's Universal Robots</title>
   </head>
   <body>

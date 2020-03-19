@@ -35,24 +35,6 @@ const pauseProm = (timeout) => {
 export function intro({dispatch}) {
 	return function(next){
 		return function(action){
-			if(action.type === INTRO_START){
-				const introContent = document.getElementById('intro-content');
-				const intro = document.getElementById('intro');
-				pauseProm(500)
-					.then(()=>introContFadeOut(introContent))
-					.then(()=>pauseProm(1500))
-					.then(()=>intro_02(introContent))
-					.then(()=>introContFadeIn(introContent))
-					.then(()=>pauseProm(1500))
-					.then(()=>introContFadeOut(introContent))
-					.then(()=>pauseProm(1500))
-					.then(()=>intro_03(introContent))
-					.then(()=>introContFadeIn(introContent))
-					.then(()=>pauseProm(1000))
-					.then(()=>allFade(intro))
-					.then(()=>pauseProm(1500))
-					.then(()=>removeAll(intro))
-			}
 			if(action.type === INTRO_END){
 				console.log('Testing');
 				const intro = document.getElementById('intro');

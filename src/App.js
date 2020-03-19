@@ -23,7 +23,7 @@ function FontFamily(){
 
 class App extends React.Component {
   componentDidMount(){
-    this.props.intro_start();
+    window.addEventListener('animationend',(e)=>this.props.intro_end(e))
   }
 
   componentWillUnmount(){
@@ -53,7 +53,8 @@ class App extends React.Component {
         <WebFonts />
         <div id="intro">
           <div id="intro-content">
-            Hello.
+            <div id="intro-bookmark">
+            </div>
           </div>
           <div id="skip-link">
             <a 
@@ -111,4 +112,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps,{scroll_change,intro_start,intro_end})(App);
+export default connect(mapStateToProps,{scroll_change,intro_end})(App);

@@ -111,6 +111,13 @@ body, html {
     text-transform: uppercase;
 }
 
+#intro-bookmark:before {
+  content: "Hello.";
+  animation-name: introAnim;
+  animation-duration: 12s;
+  animation-fill-mode: forwards;
+}
+
 #skip-link {
   position: absolute;
   left: 50vw;

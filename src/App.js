@@ -1,32 +1,20 @@
 import React from 'react';
 import './App.css';
-import store from './store/index';
 import {connect} from 'react-redux';
-import {scroll_change,intro_start,intro_end} from './actions/index';
-import {WebFonts} from './components/fonts';
+import {scroll_change,intro_end} from './actions/index';
+import {WebFonts, FontFamilyHead, FontFamilyBody} from './components/fonts';
 import {siteContent} from './constants/content';
 import {config} from './constants/config';
 import ParallaxSlide from './components/ParallaxSlide';
 
-function FontFamily(){
-  if(config.fontFamily){
-    return(
-      config.fontFamily
-    )
-  }
-  else{
-    return(
-      '"Helvetica Neue", Helvetica, Arial, sans-serif'
-    )
-  }
-}
-
 class App extends React.Component {
+
   componentDidMount(){
     window.addEventListener('animationend',(e)=>this.props.intro_end(e))
   }
 
   componentWillUnmount(){
+    window.removeEventListener('animationend',(e)=>this.props.intro_end(e))
   }
 
   renderParallaxSlide(i){
@@ -35,6 +23,8 @@ class App extends React.Component {
     return(
       <ParallaxSlide
         slideName={tempObj.slideName}
+        paraType={tempObj.paraType}
+        colorMode={tempObj.colorMode}
         paraStrength={tempObj.paraStrength}
         paraBgSrc={tempObj.paraBgSrc}
         paraBgAlt={tempObj.paraBgAlt}
@@ -45,13 +35,17 @@ class App extends React.Component {
         paraConCopy={tempObj.paraConCopy}
       />
     )
-    
   }
+
   render(){
     return(
       <div>
         <WebFonts />
-        <div id="intro">
+        <div id="intro" 
+          style={{
+            fontFamily: config.fontFamilyHead ? config.fontFamilyHead : '"Helvetica Neue", Helvetica, Arial, sans-serif'
+          }}
+        >
           <div id="intro-content">
             <div id="intro-bookmark">
             </div>
@@ -64,34 +58,6 @@ class App extends React.Component {
             >
               Skip Intro
             </a>
-          </div>
-        </div>
-        <div style={{fontFamily: FontFamily()}}>
-          <div id="slide">
-            <div 
-              id="slide-01"
-              className="content"
-            >
-              <img 
-                src='/images/logo-rur-white.png' 
-                className="logo"
-              />
-            </div>
-            <div
-              className="content hidden"
-            >
-              <h1>
-                Rossum's Universal Robots
-              </h1>
-            </div>
-          </div>
-          <div 
-            id="scrollCounter"
-          >
-            <h1>
-              ScrollTop: {this.props.scrollTop}<br/>
-              ScrollBottom: {this.props.scrollBottom}<br/>
-            </h1>
           </div>
         </div>
         {this.renderParallaxSlide(0)}

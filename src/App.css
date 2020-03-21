@@ -1,24 +1,16 @@
-body, html {
-  height: 1000vw;
-  background-image: linear-gradient(to bottom, orange, blue);
-  overflow: hidden;
-}
-
-#scrollCounter {
-    position: fixed;
-    z-index: 100;
-    top: 3vw;
-    left: 6vw;
-    color: white;
-}
-
 #slide {
     position: fixed;
     width: 100vw;
     height: 100vh;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: white;
 }
+
+.slideDark {
+  background-color: black;
+  color: white;
+}
+
 
 .content {
     position: absolute;
@@ -27,30 +19,22 @@ body, html {
     transform: translate(-50%,-50%);
 }
 
-#slide-01 .logo {
-  height: auto;
-  width: 10vw;
-}
-
 .hidden {
   display: none;
 }
 
 .paraSlideContent {
-  width: 50vw;
-  text-align: center;
+  width: 80vw;
+  text-align: left;
   position: relative;
   left: 50vw;
   transform: translate(-50%,-50%);
-  color: white;
   top: 50vh;
-  background-color: rgba(0,0,0,0.5);
   padding: 2em;
 }
 
 .paraSlideSubheadTop {
-  font-size: 3rem;
-  font-family: p22-underground,sans-serif;
+  font-size: 2rem;
   font-weight: 400;
   margin:0;
   text-transform: uppercase;
@@ -58,22 +42,19 @@ body, html {
 
 
 .paraSlideLogo {
-  font-size: 12rem;
-  font-family: p22-underground,sans-serif;
+  font-size: 6rem;
   font-weight: 100;
   margin:0;
 }
 
 .paraSlideHead {
-  font-size: 6rem;
-  font-family: p22-underground,sans-serif;
+  font-size: 3rem;
   font-weight: 100;
   margin:0;
 }
 
 .paraSlideSubheadBottom {
-  font-size: 3rem;
-  font-family: p22-underground,sans-serif;
+  font-size: 1.5rem;
   font-weight: 400;
   line-height: 1;
   text-transform: uppercase;
@@ -81,41 +62,55 @@ body, html {
 }
 
 .paraSlideCopy {
-  font-size: 1.5rem;
-  line-height: 1;
-  font-family: p22-underground,sans-serif;
+  font-size: 1rem;
+  line-height: 1.25;
   font-weight: 300;
+}
+
+.paraSlideBgPartial {
+  width: 100vw;
+  height: auto;
+  position: absolute;
+  top: 100vh;
+  left: -50vw;
 }
 
 #intro {
     width: 100vw;
-    height: 100vw;
-    position: absolute;
+    height: 100vh;
+    position: fixed;
     z-index: 100;
     background-color: white;
-    transition: 3s ease-out;
     opacity: 1;
 }
 
 #intro-content {
     line-height: 1;
-    font-family: p22-underground,sans-serif;
     position: absolute;
-    left: 50vw;
-    top: 50vh;
     text-align: center;
-    transform: translate(-50%,-50%);
-    font-size: 5rem;
+    font-size: 2rem;
     opacity: 1;
-    transition: 0.5s ease-in;
     text-transform: uppercase;
+    width: 100vw;
+    height: 100vh;
+}
+
+#intro-bookmark {
+  width: 80vw;
+  height: 100vh;
+  margin: auto;
 }
 
 #intro-bookmark:before {
   content: "Hello.";
   animation-name: introAnim;
-  animation-duration: 12s;
+  animation-duration: 10s;
   animation-fill-mode: forwards;
+  width: 80vw;
+  height: 30vh;
+  display: block;
+  position: absolute;
+  top: 35vh;
 }
 
 #skip-link {
@@ -131,5 +126,38 @@ body, html {
 #skip-link a {
   text-decoration: none;
   color: black;
-  font-family: p22-underground,sans-serif;
+}
+
+/* START Desktop */
+@media (min-width: 1200px) and (min-height: 421px){
+
+  .paraSlideContent {
+    width: 50vw;
+  }
+
+  .paraSlideSubheadTop {
+    font-size: 3rem;
+  }
+
+  #intro-content {
+    font-size: 5rem;
+  }
+
+  .paraSlideLogo {
+    font-size: 12rem;
+  }
+
+  .paraSlideHead {
+    font-size: 6rem;
+  }
+
+  .paraSlideSubheadBottom {
+    font-size: 3rem;
+  }
+
+  .paraSlideCopy {
+    font-size: 1.5rem;
+  }
+
+
 }

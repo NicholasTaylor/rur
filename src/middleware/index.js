@@ -1,26 +1,11 @@
-import {INTRO_START, INTRO_END} from '../constants/action-types';
+import {INTRO_END} from '../constants/action-types';
 
-const introContFadeOut = (introContent) => {
-	introContent.style.opacity = 0;
-	introContent.style.transition = '3s ease-out';
-}
-
-const introContFadeIn = (introContent) => {
-	introContent.style.opacity = 1;
-}
-
-const intro_02 = (introContent) => {
-	introContent.innerText = 'What would you do if you were really free?';
-}
-
-const intro_03 = (introContent) => {
-	introContent.innerHTML = '<img src="images/logo-rur-blue.png" class="logo" />';
+const addTransition = (intro) => {
+	intro.style.transition = '3s ease-out';
 }
 
 const allFade = (intro) => {
 	intro.style.opacity = 0;
-	document.getElementsByTagName('body')[0].style.overflow = 'auto';
-	document.getElementsByTagName('html')[0].style.overflow = 'auto';
 }
 
 const removeAll = (intro) => {
@@ -39,8 +24,9 @@ export function intro({dispatch}) {
 				console.log('Testing');
 				const intro = document.getElementById('intro');
 				pauseProm(250)
+					.then(()=>addTransition(intro))
 					.then(()=>allFade(intro))
-					.then(()=>pauseProm(500))
+					.then(()=>pauseProm(600))
 					.then(()=>removeAll(intro))
 			}
 			return next(action);

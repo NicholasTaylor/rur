@@ -52,6 +52,7 @@
 
         64% {
           content: "And only one company on earth makes them.";
+          opacity: 0;
         }
 
         75% {
@@ -61,17 +62,42 @@
         88% {
           opacity: 0;
           content: "And only one company on earth makes them.";
+          background-image: none;
+          background-repeat: no-repeat;
+          background-size: auto 100%;
+          background-position: top center;
         }
 
         89% {
-          content: url("images/logo-rur-blue.png");
+          opacity: 0;
+          content: '';
+          background-image: url("images/logo-rur-blue.png");
+          background-repeat: no-repeat;
+          background-size: auto 100%;
+          background-position: top center;
         }
 
         100% {
           opacity: 1;
-          content: url("images/logo-rur-blue.png");
+          content: '';
+          background-image: url("images/logo-rur-blue.png");
+          background-repeat: no-repeat;
+          background-size: auto 100%;
+          background-position: top center;
         }
       }
+
+      /*@keyframes introAnim {
+        0% {
+          content: '';
+          background-image: url("images/logo-rur-blue.png")
+        }
+
+        100% {
+          content: '';
+          background-image: url("images/logo-rur-blue.png")
+        }
+      }*/
     </style>
     <title>Rossum's Universal Robots</title>
   </head>

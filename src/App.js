@@ -6,6 +6,7 @@ import {WebFonts} from './components/fonts';
 import {siteContent} from './constants/content';
 import {config} from './constants/config';
 import ParallaxSlide from './components/ParallaxSlide';
+import TopNav from './components/TopNav';
 
 class App extends React.Component {
 
@@ -45,28 +46,13 @@ class App extends React.Component {
     return(
       <div>
         <WebFonts />
-        <nav 
-          id="nav-top"
-          style={{
-            animationName:this.props.navStatus,
-            fontFamily: config.fontFamilyBody ? config.fontFamilyBody : '"Helvetica Neue", Helvetica, Arial, sans-serif'
-          }}
-        >
-          <div 
-            id="nav-title"
-          >
-            Rossum's Universal Robots
-          </div>
-          <div 
-            id="nav-cta"
-          >
-            <a 
-              href="https://www.eventbrite.com/"
-            >
-              Order Tickets
-            </a>
-          </div>
-        </nav>
+        <TopNav
+          navStatus={this.props.navStatus}
+          fontFamily={config.fontFamilyBody ? config.fontFamilyBody : '"Helvetica Neue", Helvetica, Arial, sans-serif'}
+          siteName="Rossum's Universal Robots"
+          ctaCopy="Order Tickets"
+          ctaURL="https://www.eventbrite.com/"
+        />
         {this.renderParallaxSlide(0)}
         {this.renderParallaxSlide(1)}
         {this.renderParallaxSlide(2)}

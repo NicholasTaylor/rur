@@ -9,6 +9,6 @@ export function intro_start(){
 }
 
 export function intro_end(event){
-	return {type: INTRO_END};
+	return {type: INTRO_END, payload:event};
 }
 

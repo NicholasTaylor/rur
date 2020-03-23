@@ -87,17 +87,42 @@
         }
       }
 
-      /*@keyframes introAnim {
+      @keyframes fadeOut {
         0% {
-          content: '';
-          background-image: url("images/logo-rur-blue.png")
+          opacity: 1;
+          visibility: visible;
+        }
+
+        99% {
+          opacity: 0;
+          visibility: visible;
         }
 
         100% {
-          content: '';
-          background-image: url("images/logo-rur-blue.png")
+          visibility: hidden;
         }
-      }*/
+      }
+
+      @keyframes navOn {
+        0% {
+          top: -3em;
+        }
+
+        100% {
+          top: 0em;
+        }
+      }
+
+      @keyframes navOff {
+        0% {
+          top: 0em;
+        }
+
+        100% {
+          top: -3em;
+        }
+      }
+      
     </style>
     <title>Rossum's Universal Robots</title>
   </head>

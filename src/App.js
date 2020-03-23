@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import {connect} from 'react-redux';
 import {scroll_change,intro_end} from './actions/index';
-import {WebFonts, FontFamilyHead, FontFamilyBody} from './components/fonts';
+import {WebFonts} from './components/fonts';
 import {siteContent} from './constants/content';
 import {config} from './constants/config';
 import ParallaxSlide from './components/ParallaxSlide';
@@ -10,7 +10,10 @@ import ParallaxSlide from './components/ParallaxSlide';
 class App extends React.Component {
 
   componentDidMount(){
+    this.props.scroll_change();
     window.addEventListener('animationend',(e)=>this.props.intro_end(e))
+    window.addEventListener('scroll',(e)=>this.props.scroll_change(e))
+    window.addEventListener('resize',(e)=>this.props.scroll_change(e))
   }
 
   componentWillUnmount(){
@@ -23,15 +26,16 @@ class App extends React.Component {
     return(
       <ParallaxSlide
         slideName={tempObj.slideName}
-        paraType={tempObj.paraType}
+        bgType={tempObj.bgType}
+        copyVertical={tempObj.copyVertical}
+        copyHorizontal={tempObj.copyHorizontal}
+        copyCaption={tempObj.copyCaption}
         colorMode={tempObj.colorMode}
         paraStrength={tempObj.paraStrength}
         paraBgSrc={tempObj.paraBgSrc}
         paraBgAlt={tempObj.paraBgAlt}
-        paraConSubTop={tempObj.paraConSubTop}
         paraConLogo={tempObj.paraConLogo}
         paraConHead={tempObj.paraConHead}
-        paraConSubBottom={tempObj.paraConSubBottom}
         paraConCopy={tempObj.paraConCopy}
       />
     )
@@ -51,15 +55,40 @@ class App extends React.Component {
             </div>
           </div>
           <div id="skip-link">
-            <a 
+            <button 
               onClick={(e) => this.props.intro_end(e)}
               href="#" 
-              className="skipLink"
+              className="skipLink" 
+              style={{
+                fontFamily: config.fontFamilyHead ? config.fontFamilyHead : '"Helvetica Neue", Helvetica, Arial, sans-serif'
+              }}
             >
               Skip Intro
-            </a>
+            </button>
           </div>
         </div>
+        <nav 
+          id="nav-top"
+          style={{
+            animationName:this.props.navStatus,
+            fontFamily: config.fontFamilyBody ? config.fontFamilyBody : '"Helvetica Neue", Helvetica, Arial, sans-serif'
+          }}
+        >
+          <div 
+            id="nav-title"
+          >
+            Rossum's Universal Robots
+          </div>
+          <div 
+            id="nav-cta"
+          >
+            <a 
+              href="https://www.eventbrite.com/"
+            >
+              Order Tickets
+            </a>
+          </div>
+        </nav>
         {this.renderParallaxSlide(0)}
         {this.renderParallaxSlide(1)}
         {this.renderParallaxSlide(2)}
@@ -74,7 +103,8 @@ function mapStateToProps(state){
   return {
     scrollTop:state.scrollTop,
     scrollBottom:state.scrollBottom,
-    slidePos:state.slidePos
+    slidePos:state.slidePos,
+    navStatus:state.navStatus
   }
 }
 

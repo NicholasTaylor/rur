@@ -1,3 +1,7 @@
+html, body {
+  overflow-x: hidden;
+}
+
 #slide {
     position: fixed;
     width: 100vw;
@@ -26,69 +30,122 @@
 .paraSlideContent {
   width: 80vw;
   text-align: left;
-  position: relative;
-  left: 50vw;
-  transform: translate(-50%,-50%);
+  position: absolute;
+  z-index: 101;
+  padding: 3vh 6vw;
+}
+
+.vertMiddle .paraSlideContent {
   top: 50vh;
-  padding: 2em;
 }
 
-.paraSlideSubheadTop {
-  font-size: 2rem;
-  font-weight: 400;
-  margin:0;
-  text-transform: uppercase;
+.vertMiddle .paraSlideContent {
+  transform: translateY(-50%);
 }
 
+.vertBottom .paraSlideContent {
+  transform: translateY(-100%);
+}
+
+.horizCenter .paraSlideContent {
+  transform: translateX(-50%);
+  left: 50vw;
+  text-align: center;
+}
+
+.horizRight .paraSlideContent {
+  transform: translateX(-100%);
+  text-align: right;
+  left: 100vw;
+}
+
+.horizLeft .paraSlideContent {
+  text-align: left;
+}
+
+.horizCenter .vertMiddle .paraSlideContent {
+  transform: translate(-50%, -50%);
+}
+
+.horizCenter .vertBottom .paraSlideContent {
+  transform: translate(-50%, -100%);
+}
+
+.horizRight .vertMiddle .paraSlideContent {
+  transform: translate(-100%, -50%);
+}
+
+.horizRight .vertBottom .paraSlideContent {
+  transform: translate(-100%, -100%);
+}
+
+.vertBottom .paraSlideContent {
+  top: 100vh;
+}
 
 .paraSlideLogo {
-  font-size: 6rem;
-  font-weight: 100;
+  font-size: 2rem;
+  font-weight: 300;
   margin:0;
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 
 .paraSlideHead {
-  font-size: 3rem;
-  font-weight: 100;
+  font-size: 2rem;
+  font-weight: 500;
   margin:0;
-}
-
-.paraSlideSubheadBottom {
-  font-size: 1.5rem;
-  font-weight: 400;
   line-height: 1;
-  text-transform: uppercase;
-  margin:0;
 }
 
 .paraSlideCopy {
-  font-size: 1rem;
+  font-size: 1.25rem;
   line-height: 1.25;
   font-weight: 300;
 }
 
-.paraSlideBgPartial {
+.bgPartial .react-parallax-background img {
   width: 100vw;
   height: auto;
   position: absolute;
   top: 100vh;
   left: -50vw;
+  transform: none;
 }
+
+.slideLight .bgFull .paraFilter {
+  background-color: rgba(255,255,255,0.3);
+}
+
+.slideDark .bgFull .paraFilter {
+  background-color: rgba(0,0,0,0.3);
+}
+
+.bgFull .paraFilter {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 100;
+}
+
 
 #intro {
     width: 100vw;
     height: 100vh;
-    position: fixed;
-    z-index: 100;
+    position: absolute;
+    z-index: 200;
     background-color: white;
     opacity: 1;
+    display: block;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 }
 
 #intro-content {
     line-height: 1;
     position: absolute;
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.5rem;
     opacity: 1;
     text-transform: uppercase;
     width: 100vw;
@@ -117,26 +174,101 @@
   position: absolute;
   left: 50vw;
   transform: translateX(-50%);
-  font-size:1.5rem;
-  z-index: 101;
-  letter-spacing: -0.06em;
+  z-index: 201;
   top: 90vh;
 }
 
-#skip-link a {
-  text-decoration: none;
+#skip-link button {
+  border: none;
+  font-size: 1.75rem;
   color: black;
+  letter-spacing: -0.06em;
+  background-color: transparent;
 }
 
-/* START Desktop */
-@media (min-width: 1200px) and (min-height: 421px){
+#nav-top {
+    position: fixed;
+    width: 100vw;
+    height: 3em;
+    background-color: white;
+    z-index: 110;
+    border-bottom: 1px solid #c0c0c0;
+    top: -3em;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
 
-  .paraSlideContent {
-    width: 50vw;
+#nav-title, #nav-cta {
+    display: inline-block;
+    letter-spacing: -0.06em;
+    position: absolute;
+    line-height: 1;
+}
+
+#nav-title {
+    margin-top: 1em;
+    left: 3vw;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+#nav-cta {
+    right: 3vw;
+    font-size: 0.9rem;
+    margin-top: 1.2em;
+}
+
+#nav-cta a {
+    color: white;
+    background-color: #1bb4e9;
+    text-decoration: none;
+    border-radius: 1em;
+    padding: 0.1em 0.75em 0.2em 0.75em;
+}
+
+
+/* START Micro Mobile */
+@media (max-width: 320px){
+  .paraSlideLogo {
+    font-size: 1.5rem;
   }
 
-  .paraSlideSubheadTop {
-    font-size: 3rem;
+  .paraSlideHead {
+    font-size: 2rem;
+  }
+
+  .paraSlideCopy {
+    font-size: 1rem;
+  }
+
+  #intro-content {
+    font-size: 2rem;
+  }
+
+  #skip-link button {
+    font-size: 1.5rem;
+  }
+}
+/* END Micro Mobile */
+
+/* START Mobile Landscape */
+@media (max-height: 420px){
+  .slide, .react-parallax, .bgFull .paraFilter {
+    min-height: 600px;
+  }
+
+  .bgPartial .react-parallax-background img {
+    transform: none;
+  }
+}
+
+/* END Mobile Landscape */
+
+/* START Tablet */
+@media (min-width: 768px) and (min-height: 421px){
+
+  .bgPartial .react-parallax-background img {
+    transform: translateY(-50%);
   }
 
   #intro-content {
@@ -144,20 +276,53 @@
   }
 
   .paraSlideLogo {
-    font-size: 12rem;
+    font-size: 3rem;
   }
 
   .paraSlideHead {
-    font-size: 6rem;
-  }
-
-  .paraSlideSubheadBottom {
-    font-size: 3rem;
+    font-size: 5rem;
   }
 
   .paraSlideCopy {
     font-size: 1.5rem;
   }
 
+  .captionOn .paraSlideContent {
+    width: 40vw;
+  }
+
+  .captionOn .paraSlideHead {
+    font-size: 4rem;
+  }
+
+  .captionOn .paraSlideCopy {
+    font-size: 1.25rem;
+  }
 
 }
+/* END Tablet */
+
+/* START Laptop */
+@media (min-width: 1000px){
+  .bgPartial .react-parallax-background img {
+    transform: translateY(-35%);
+  }
+
+  .paraSlideContent {
+    width: 50vw;
+  }
+
+  .paraSlideLogo {
+    font-size: 4rem;
+  }
+
+  .paraSlideCopy {
+    font-size: 1.75rem;
+  }
+
+  .captionOn .paraSlideContent {
+    width: 30vw;
+  }
+
+}
+/* END Laptop */

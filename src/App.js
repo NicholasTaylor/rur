@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {connect} from 'react-redux';
-import {scroll_change,intro_end} from './actions/index';
+import {scroll_change} from './actions/index';
 import {WebFonts} from './components/fonts';
 import {siteContent} from './constants/content';
 import {config} from './constants/config';
@@ -11,13 +11,13 @@ class App extends React.Component {
 
   componentDidMount(){
     this.props.scroll_change();
-    window.addEventListener('animationend',(e)=>this.props.intro_end(e))
     window.addEventListener('scroll',(e)=>this.props.scroll_change(e))
     window.addEventListener('resize',(e)=>this.props.scroll_change(e))
   }
 
   componentWillUnmount(){
-    window.removeEventListener('animationend',(e)=>this.props.intro_end(e))
+    window.removeEventListener('scroll',(e)=>this.props.scroll_change(e))
+    window.removeEventListener('resize',(e)=>this.props.scroll_change(e))
   }
 
   renderParallaxSlide(i){
@@ -45,28 +45,6 @@ class App extends React.Component {
     return(
       <div>
         <WebFonts />
-        <div id="intro" 
-          style={{
-            fontFamily: config.fontFamilyHead ? config.fontFamilyHead : '"Helvetica Neue", Helvetica, Arial, sans-serif'
-          }}
-        >
-          <div id="intro-content">
-            <div id="intro-bookmark">
-            </div>
-          </div>
-          <div id="skip-link">
-            <button 
-              onClick={(e) => this.props.intro_end(e)}
-              href="#" 
-              className="skipLink" 
-              style={{
-                fontFamily: config.fontFamilyHead ? config.fontFamilyHead : '"Helvetica Neue", Helvetica, Arial, sans-serif'
-              }}
-            >
-              Skip Intro
-            </button>
-          </div>
-        </div>
         <nav 
           id="nav-top"
           style={{
@@ -108,4 +86,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps,{scroll_change,intro_end})(App);
+export default connect(mapStateToProps,{scroll_change})(App);

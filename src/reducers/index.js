@@ -1,4 +1,4 @@
-import {SCROLL_CHANGE, INTRO_END} from '../constants/action-types';
+import {SCROLL_CHANGE, INTRO_END, INTRO_SKIP} from '../constants/action-types';
 
 const stateInit = {
 	scrollTop: 0,
@@ -18,13 +18,6 @@ function rootReducer (state = stateInit, action){
 		tempObj.navStatus = tempObj.scrollTop > innerH ? 'navOn' : 'navOff'
 		return Object.assign({},state,tempObj);
 		}
-
-	if(action.type === INTRO_END){
-		if(action.payload.animationName === 'introAnim'){
-			const intro = document.getElementById('intro');
-			intro.style.animationName = 'fadeOut';
-		}
-	}
 	return state;
 }
 
